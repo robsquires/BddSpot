@@ -1,0 +1,23 @@
+<ul class="unstyled">
+    <li class="feature" ng-repeat="feature in suite.features | filter:searchText">
+        <h2 class="{{feature.result}}">{{feature.title}}</h2>
+        <p>
+        <span ng-repeat="line in feature.desc|split">{{line}}</span>
+        </p>
+        <ul class="unstyled">
+            <li class="scenario" ng-repeat="scenario in feature.scenarios | filter:searchText">
+                <h3>{{scenario.title}}</h3>
+                <ul class="unstyled">
+                    <li class="step" ng-repeat="step in scenario.steps | filter:searchText">
+                        <h4 ng-switch on="step.result">
+                          <span ng-switch-when="passed" class="text-success">{{step.type}} {{step.text}}</span>
+                          <span ng-switch-when="failed" class="text-error">{{step.type}} {{step.text}}</span>
+                          <span ng-switch-when="undefined" class="text-success">{{step.type}} {{step.text}}</span>
+                        </h4>
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
